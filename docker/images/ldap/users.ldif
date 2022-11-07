@@ -1,0 +1,18 @@
+dn: ou=users, dc=cgos, dc=org
+objectclass: organizationalunit
+ou: users
+description: users of the eCollab platform
+
+dn: uid=dnukem, ou=users, dc=cgos, dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: dnukem
+ou: users
+givenName: Duke
+sn: Nukem
+uid: dnukem
+userPassword: cenotelie
+mail: dnukem@cenotelie.fr
+l: France

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Climat metrics received</h1>
+<ul id="events"></ul>
+<script type="application/javascript">
+    const add = message => {
+        const item = document.createElement("li");
+        item.innerHTML = message;
+        document.getElementById("events").appendChild(item);
+    };
+    const eventSource = new EventSource(window.location + "/climat-stream");
+    eventSource.onmessage = e => {
+        const t = JSON.parse(e.data);
+        const temp = Number(t.temperature).toFixed(2);
+        const pressure = Number(t.pressure).toFixed(2);
+        const humidity = Number(t.humidity).toFixed(2);
+        const date = t.datetime;
+        add(temp + '°C, ' + pressure + " PA, " + humidity +"% humidity @ " + date);
+    };
+    eventSource.onopen = e => add('Connection opened');
+    eventSource.onerror = e => {
+        add('Connection closed');
+        eventSource.close();
+    };
+</script>
+</body>
+</html>

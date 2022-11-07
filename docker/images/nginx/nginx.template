@@ -1,0 +1,58 @@
+worker_processes 1;
+
+events { worker_connections 1024; }
+
+http {
+    sendfile on;
+
+    proxy_buffer_size   128k;
+    proxy_buffers   4 256k;
+    proxy_busy_buffers_size   256k;
+    client_max_body_size   2048M;
+
+    server {
+        listen 80;
+
+        location /auth/ {
+            resolver ${RESOLVER} ipv6=off;
+            set $upstream keycloak:8080;
+            include proxy_params;
+            proxy_pass         http://$upstream;
+        }
+        location /analytics/ {
+            resolver ${RESOLVER} ipv6=off;
+            set $upstream analytics:5601;
+            include proxy_params;
+            rewrite ^/analytics/?(.*)$ /$1 break;
+            proxy_set_header Connection "";
+            proxy_intercept_errors on;
+            proxy_pass         http://$upstream;
+        }
+#        location /schema-ui/ {
+#            resolver ${RESOLVER} ipv6=off;
+#            set $upstream schema-registry-ui:8000;
+#            include proxy_params_spring;
+#            rewrite ^/schema-ui/(.*)$ /$1  break;
+#            proxy_pass         http://$upstream;
+#        }
+        location /rest-proxy/ {
+            resolver ${RESOLVER} ipv6=off;
+            set $upstream rest-proxy:8082;
+            include proxy_params_spring;
+            rewrite ^/rest-proxy/(.*)$ /$1  break;
+            proxy_pass         http://$upstream;
+        }
+#        location /kafka-ksql/ {
+#            resolver ${RESOLVER} ipv6=off;
+#            set $upstream ksqldb-server:8088;
+#            include proxy_params;
+#            proxy_pass         http://$upstream;
+#        }
+        location /akhq/ {
+            resolver ${RESOLVER} ipv6=off;
+            set $upstream akhq:8080;
+            include proxy_params;
+            proxy_pass         http://$upstream;
+        }
+    }
+}

@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "e7874d4e-9222-4560-b365-b450f9945024",
+		"name": "Training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4110593"
+	},
+	"item": [
+		{
+			"name": "Create connector",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"elasticsearch-sink\",\n  \"config\": {\n    \"connector.class\": \"io.confluent.connect.elasticsearch.ElasticsearchSinkConnector\",\n    \"tasks.max\": \"1\",\n    \"topics\": \"mytopic\",\n    \"key.ignore\": \"true\",\n    \"schema.ignore\": \"true\",\n    \"connection.url\": \"http://elasticsearch:9200\",\n    \"type.name\": \"_doc\",\n    \"name\": \"elasticsearch-sink\",\n    \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\n    \"key.converter.schemas.enable\": \"false\",\n    \"value.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\n    \"value.converter.schemas.enable\": \"false\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete connector",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"elasticsearch-sink\",\n  \"config\": {\n    \"connector.class\": \"io.confluent.connect.elasticsearch.ElasticsearchSinkConnector\",\n    \"tasks.max\": \"1\",\n    \"topics\": \"mytopic\",\n    \"key.ignore\": \"true\",\n    \"schema.ignore\": \"true\",\n    \"connection.url\": \"http://elasticsearch:9200\",\n    \"type.name\": \"_doc\",\n    \"name\": \"elasticsearch-sink\",\n    \"key.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\n    \"key.converter.schemas.enable\": \"false\",\n    \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\n    \"value.converter.schemas.enable\": \"false\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors/elasticsearch-sink",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"elasticsearch-sink"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List connectors",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"elasticsearch-sink\",\n  \"config\": {\n    \"connector.class\": \"io.confluent.connect.elasticsearch.ElasticsearchSinkConnector\",\n    \"tasks.max\": \"1\",\n    \"topics\": \"mytopic\",\n    \"key.ignore\": \"true\",\n    \"schema.ignore\": \"true\",\n    \"connection.url\": \"http://localhost:9200\",\n    \"type.name\": \"_doc\",\n    \"name\": \"elasticsearch-sink\",\n    \"key.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\n    \"key.converter.schemas.enable\": \"false\",\n    \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\n    \"value.converter.schemas.enable\": \"false\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List connector plugins",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"elasticsearch-sink\",\n  \"config\": {\n    \"connector.class\": \"io.confluent.connect.elasticsearch.ElasticsearchSinkConnector\",\n    \"tasks.max\": \"1\",\n    \"topics\": \"mytopic\",\n    \"key.ignore\": \"true\",\n    \"schema.ignore\": \"true\",\n    \"connection.url\": \"http://localhost:9200\",\n    \"type.name\": \"_doc\",\n    \"name\": \"elasticsearch-sink\",\n    \"key.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\n    \"key.converter.schemas.enable\": \"false\",\n    \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\n    \"value.converter.schemas.enable\": \"false\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/connector-plugins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connector-plugins"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

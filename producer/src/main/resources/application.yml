@@ -1,0 +1,21 @@
+micronaut:
+  application:
+    name: producer
+  server:
+    port: 8888
+netty:
+  default:
+    allocator:
+      max-order: 3
+kafka:
+  bootstrap:
+    servers: localhost:29092
+  producers:
+    climat-client:
+      value:
+        serializer: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer
+    schema:
+      registry:
+        url: "http://localhost:8081"
+
+source_temperature: http://localhost:7777/climat-stream

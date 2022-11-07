@@ -1,0 +1,27 @@
+{
+  "type" : "record",
+  "namespace": "fr.cenotelie.training.data",
+  "name": "ClimatEvent",
+  "fields": [
+    {
+      "name": "temperature",
+      "type": "double",
+      "doc": "Temperature field"
+    },
+    {
+      "name": "pressure",
+      "type": "double",
+      "doc": "Pressure field"
+    },
+    {
+      "name": "humidity",
+      "type": "double",
+      "doc": "Humidity field"
+    },
+    {
+      "name": "datetime",
+      "type": "string",
+      "doc": "Date Time Field"
+    },
+  ]
+}

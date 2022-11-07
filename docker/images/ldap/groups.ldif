@@ -1,0 +1,10 @@
+dn: ou=groups, dc=cenotelie, dc=fr
+objectclass: organizationalunit
+ou: groups
+description: groups of the cgos platform
+
+dn: cn=admins, ou=groups, dc=cenotelie, dc=fr
+objectclass: groupofnames
+cn: auth
+description: Auth Users branch
+member: cn=dnukem, ou=groups, dc=cenotelie, dc=fr
